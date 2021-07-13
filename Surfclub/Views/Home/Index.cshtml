@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Лента Новостей";
+}
+@model News
+
+@if (true)
+            {
+ <form asp-controller="Home" asp-action="AddNewPost" method="post" enctype="multipart/form-data">
+     <span>Добавление новой записи</span>
+     <label>Введите текст</label>
+     <input type="text"asp-for="Text"  />
+     <input type="file" accept=".jpg,.jpeg,.png" class="hidden" name="imageData" />
+     <input type="submit"/>
+ </form>
+            }
+<div>
+    @foreach (News post in ViewBag.Posts)
+    {<div style="border: solid; border-width:1.5px">
+        <div>
+            <img src="~/img/avatar1.jpg" height=" 30" style="border-radius:50%" />
+            <label>@post.Author.Nickname</label>
+            <label>@post.CreateDateLabel</label>
+        </div>
+    @if (post.Text != null)
+    {
+    <div>
+        <label>@post.Text</label>
+    </div>
+    }
+
+        <div>
+            @if (post.Photo.HasValue && Guid.Empty != post.Photo.Value)
+            {
+                var photoUrl = Surfclub.Helper.ImageHelper.GetUrl(post.Photo);
+                @if (photoUrl != null)
+                {
+                    <img src="@Url.Content(photoUrl)" width="50" />
+                }
+            }
+
+
+        </div>
+    </div>
+            }
+</div>
