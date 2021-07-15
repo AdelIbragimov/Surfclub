@@ -68,4 +68,11 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  
 }
+.field{
+    clear:both; text-align:right
+
+}
+label{float:left}
+.form-group{float:left}

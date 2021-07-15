@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -38,6 +39,9 @@ namespace Surfclub.Controllers
             }
             return View();
         }
+
+        [Authorize]
+
         [HttpPost]
         public async Task AddNewPost(News news, IFormFile imageData)
         {
@@ -56,10 +60,6 @@ namespace Surfclub.Controllers
             var context = new DataContext();
             context.News.Add(news);
             context.SaveChanges();
-
-
-
-           
         }
        
         public IActionResult Privacy()
@@ -70,7 +70,7 @@ namespace Surfclub.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new UserViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

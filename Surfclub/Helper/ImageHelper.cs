@@ -28,15 +28,42 @@ namespace Surfclub.Helper
                 return result;
             }
 
-            public static string GetUrl(Guid? guid)
+
+        public static string GetUrl(Guid? guid)
+        {
+            if (!guid.HasValue)
             {
-                if (!guid.HasValue || guid.Value == Guid.Empty)
-                {
-                    return null;
-                }
-                return string.Format("~/img/Uploads/{0}.jpg", guid);
+                return null;
             }
+            return GetUrl(guid.Value);
         }
 
+        public static string GetUrl(string photo)
+        {
+            if (string.IsNullOrEmpty(photo))
+            {
+                return null;
+            }
+            var result = Guid.TryParse(photo, out var guid);
+            if (!result)
+            {
+                return null;
+            }
+            return GetUrl(guid);
+        }
+
+        private static string GetUrl(Guid guid)
+        {
+            if (guid == Guid.Empty)
+            {
+                return null;
+            }
+            return string.Format("~/img/Uploads/{0}.jpg", guid);
+        }
+
+
     }
+}
+
+    
 

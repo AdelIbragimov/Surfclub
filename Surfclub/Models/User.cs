@@ -26,13 +26,14 @@ namespace Surfclub.Models
 
 
             public string Password { get; set; }
+        public string CheckPassword { get; set; }
         [MaxLength(31)]
 
             public string LastName { get; set; }
         [MaxLength(31)]
         public string FirstName { get; set; }
 
-            public Guid Photo { get; set; }
+            public Guid? Photo { get; set; }
 
         [MaxLength(255)]
         public string Contacts { get; set; }
