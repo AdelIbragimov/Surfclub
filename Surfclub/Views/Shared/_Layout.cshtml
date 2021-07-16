@@ -13,21 +13,15 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-3">
+            <div class="container-fluid logobg">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/img/imgpsh_fullsize_anim.jpg" height="30" />
+                    <img src="~/img/logo.jpg" />
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 @if (!User.Identity.IsAuthenticated)
-
                 {
-
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <ul class="navbar-nav flex-grow-1">
+                        <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Зарегистрироваться</a>
                             </li>
@@ -36,26 +30,31 @@
                             </li>
                         </ul>
                     </div>
-
-
                 }
                 else
                 {
-                    <div>
-                        @{
-                            var userPhoto = Surfclub.Helper.ImageHelper.GetUrl(
-                                HttpContextAccessor.HttpContext.Session.GetString("Photo"));
-                            var photo = userPhoto ?? "~/img/default_user.jpg";
-                        }
-                        <img src="@Url.Content(photo)" height="30" style="border-radius: 50%" />
-                        <label>@User.Identity.Name</label>
-
-                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">Выйти</a>
-                    </div>
-
+                    <ul class="navbar-nav">
+                        <li class="nav-item vcenter">
+                            @{
+                                var userPhoto = Surfclub.Helper.ImageHelper.GetUrl(
+                                  HttpContextAccessor.HttpContext.Session.GetString("Photo"));
+                                var photo = userPhoto ?? "~/img/avatar1.jpg";
+                            }
+                            <img class="userpic" src="@Url.Content(photo)" width="40" />
+                        </li>
+                        <li class="nav-item vcenter">
+                            @User.Identity.Name
+                        </li>
+                        <li class="nav-item vcenter">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">
+                                <img src="~/img/Exit.png" height="30" />
+                            </a>
+                        </li>
+                    </ul>
                 }
             </div>
         </nav>
+
     </header>
 
     <div class="container">

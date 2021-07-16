@@ -6,76 +6,79 @@
 <h1>Регистрация</h1>
 <form method="post" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
     <span asp-validation-summary="ModelOnly"></span>
-    <div class="form-group"></div>
-        <div style="width:100px; height:10px">
-            <label asp-for="Nickname">
-
-            </label>
-
-
-            <input type="text" asp-for="Nickname" />
-
-            <span asp-validation-for="Nickname"></span>
-            
-            <div class="form-group">
-                <label asp-for="Email">
-
-
+    <div class ="card">
+        <div class="card-header">Регистрация</div>
+        <div class="card-body">
+            <div class="form-group"></div>
+            <div style="width:100px">
+                <label asp-for="Nickname">
                 </label>
-                <input type="text" asp-for="Email" placeholder="example@ex.ru" size="20" />
-                <span asp-validation-for="Email"></span>
+                <input type="text" class="form-control" style="width:400px" asp-for="Nickname" />
 
-            </div>
-            <div class="form-group">
-                <label asp-for="Password">
-                </label>
-                <input type="password" asp-for="Password" />
-                <span asp-validation-for="Password"></span>
-            </div>
-            <div>
-                <label asp-for="CheckPassword"></label>
-                <input type="password" asp-for="CheckPassword" />
-                <span asp-validation-for="CheckPassword"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName">
-                </label>
-                <input asp-for="LastName" />
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName">
+                <span asp-validation-for="Nickname"></span>
 
-                </label>
-                <input asp-for="FirstName" />
-            </div>
-            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="Email">
+                    </label>
+                    <input type="text" class="form-control" style="width:400px" asp-for="Email" placeholder="example@ex.ru" size="20" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">
+                    </label>
+                    <input type="password" class="form-control" style="width:400px" asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div>
+                    <label asp-for="CheckPassword"></label>
+                    <input type="password" asp-for="CheckPassword" class="form-control" style="width:400px" />
+                    <span asp-validation-for="CheckPassword"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">
+                    </label>
+                    <input asp-for="LastName" class="form-control" style="width:400px" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName">
 
-                <label asp-for="Photo">
-                </label>
-                <input type="file" accept=".jpg,.jpeg,.png" class="hidden" name="imageData" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Contacts">
+                    </label>
+                    <input asp-for="FirstName" class="form-control" style="width:400px" />
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="Photo">
+                    </label>
+                    <input type="file" accept=".jpg,.jpeg,.png" class="hidden" name="imageData" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Contacts">
 
 
 
-                </label>
-                <input asp-for="Contacts" />
-            </div>
-            <div class="form-group">
-                <label asp-for="AboutMe">
+                    </label>
+                    <textarea class="form-control" rows="5" id="comment" asp-for="Contacts" class="form-control" style="width:400px"></textarea>
+                   
+                </div>
+                <div class="form-group">
+                    <label asp-for="AboutMe">
 
-                </label>
-                <input asp-for="AboutMe" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Achievments">
+                    </label>
+                    <input asp-for="AboutMe" class="form-control" style="width:400px" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Achievments">
 
-                </label>
-                <input asp-for="Achievments" />
+                    </label>
+                    <input asp-for="Achievments" class="form-control" style="width:400px" />
+                </div>
+                <div>
+                    <input type="submit" value="Регистрация" />
+                </div>
             </div>
-            <div>
-                <input type="submit" value="Регистрация" />
-            </div>
-            </div>
+        </div>
+        </div>
 </form>
+
+    <span> Уже есть аккаунт? </span>
+    <a class="text-dark" asp-area="" asp-controller="Login" asp-action="Login">Войти</a>

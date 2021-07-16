@@ -47,8 +47,8 @@ namespace Surfclub.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Неверный псевдоним или пароль!");
             }
+                ModelState.AddModelError("", "Неверный псевдоним или пароль!");
             return View("~/Views/Account/Login.cshtml", model);
         }
 

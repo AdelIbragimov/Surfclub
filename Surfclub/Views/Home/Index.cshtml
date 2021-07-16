@@ -6,22 +6,33 @@
 @if (User.Identity.IsAuthenticated)
 
 {
-    <form asp-controller="Home" asp-action="AddNewPost" method="post" enctype="multipart/form-data">
-        <span>Добавление новой записи</span>
-        <label>Введите текст</label>
-        <input type="text" asp-for="Text" />
-        <input type="file" accept=".jpg,.jpeg,.png" class="hidden" name="imageData" />
+    <div class="card" >
+    <div class="card-header">Добавление новой записи</div>
+    <div class="card-body">
+
+        <form asp-controller="Home" asp-action="AddNewPost" method="post" enctype="multipart/form-data">
+            <span>Введите текст</span>
+            <textarea class="form-control" rows="5" asp-for="Text"></textarea>
+            <input type="file" accept=".jpg,.jpeg,.png" class="hidden" name="imageData" />
+
+
+        </form>
+    </div>
+    <div class="card-footer">         
         <input type="submit" />
-    </form>
+    </div>
+        </div>
 }
 <div>
     @foreach (News post in ViewBag.Posts)
-    {<div style="border: solid; border-width:1.5px">
-            <div>
+    {
+        <div class="card" style=" border: 1px solid black;">
+            <div class="card-header">
                 <img src="~/img/avatar1.jpg" height=" 30" style="border-radius:50%" />
                 <label>@post.Author.Nickname</label>
                 <label>@post.CreateDateLabel</label>
             </div>
+            <div class="card-body">
             @if (post.Text != null)
             {
                 <div>
@@ -35,12 +46,13 @@
                     var photoUrl = Surfclub.Helper.ImageHelper.GetUrl(post.Photo);
                     @if (photoUrl != null)
                     {
-                        <img src="@Url.Content(photoUrl)" width="50" />
+                        <img src="@Url.Content(photoUrl)" width="400px" />
                     }
                 }
 
-
+            </div>
             </div>
         </div>
+
     }
 </div>

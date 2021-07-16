@@ -74,5 +74,22 @@ body {
     clear:both; text-align:right
 
 }
-label{float:left}
-.form-group{float:left}
+
+.logobg {
+    background-color: #c8d3d9;
+}
+
+.userpic {
+    border-radius: 50%;
+}
+
+/*В заголовке - центирируем аватар и выйти по центру*/
+*.vcenter {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.card {
+    margin-bottom: 10px!important;
+}

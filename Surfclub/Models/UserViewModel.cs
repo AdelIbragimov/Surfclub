@@ -11,7 +11,7 @@ namespace Surfclub.Models
     {
         [Required]
         [MaxLength(20)]
-        [MinLength(3)]
+        [MinLength(3, ErrorMessage ="Минимальное количество символов 3")]
         [Display(Name = "Псевдоним")]
    public string Nickname { get; set; }
         [Required]

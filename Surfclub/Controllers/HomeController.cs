@@ -43,13 +43,18 @@ namespace Surfclub.Controllers
         [Authorize]
 
         [HttpPost]
-        public async Task AddNewPost(News news, IFormFile imageData)
+        public async Task<IActionResult> AddNewPost(News news, IFormFile imageData)
         {
-         
+                     var context = new DataContext();
+
             if (string.IsNullOrEmpty(news.Text)
                 && imageData == null)
             {
-                return;
+                ViewBag.Posts = context.News.Include(n => n.Author)
+
+    .OrderByDescending(n => n.CreateDate).ToList();
+
+                return View("Index");
             }
 
             news.AuthorId = 1;
@@ -57,9 +62,13 @@ namespace Surfclub.Controllers
             var helper = new ImageHelper();
             news.Photo = await helper.UploadImage(imageData);
 
-            var context = new DataContext();
             context.News.Add(news);
             context.SaveChanges();
+            ViewBag.Posts = context.News.Include(n => n.Author)
+
+    .OrderByDescending(n => n.CreateDate).ToList();
+            
+            return View("Index");
         }
        
         public IActionResult Privacy()
